@@ -7,7 +7,7 @@ import {
 } from "@tanstack/react-query";
 import { Check, LoaderCircle, RefreshCw } from "lucide-react";
 import { useEffect, useRef } from "react";
-import { AppShell, type PanelId } from "@/components/AppShell";
+import { AppShell } from "@/components/AppShell";
 import { Skeleton } from "@/components/ui/skeleton";
 import {
   acknowledgeUpdate,
@@ -15,6 +15,7 @@ import {
   fetchDepartmentUpdates,
   type UpdatePage,
 } from "@/lib/dashboard-api";
+import type { PanelId } from "@/lib/navigation";
 
 declare global {
   interface Window {

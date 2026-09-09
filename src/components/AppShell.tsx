@@ -7,83 +7,9 @@ import {
   X,
   PanelLeftClose,
   PanelLeftOpen,
-  Zap,
-  Sprout,
-  Factory,
-  Truck,
-  Package,
-  Wallet,
 } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
-
-export type PanelId = "cmd" | "cane" | "prod" | "ht" | "inv" | "fi";
-export type DepartmentPath =
-  | "/management"
-  | "/cane-agriculture"
-  | "/production"
-  | "/harvesting-transport"
-  | "/inventory"
-  | "/finance-sales";
-
-type NavItem = {
-  id: PanelId;
-  label: string;
-  dept: string;
-  icon: typeof Zap;
-  group: string;
-  to: DepartmentPath;
-};
-
-export const NAV: NavItem[] = [
-  {
-    id: "cmd",
-    label: "MD / Management",
-    dept: "Level 1 Executive View",
-    icon: Zap,
-    group: "Top Management",
-    to: "/management",
-  },
-  {
-    id: "cane",
-    label: "Cane & Agriculture",
-    dept: "Receiving & Forecast",
-    icon: Sprout,
-    group: "Operations",
-    to: "/cane-agriculture",
-  },
-  {
-    id: "prod",
-    label: "Production",
-    dept: "Sugar & By-products",
-    icon: Factory,
-    group: "Operations",
-    to: "/production",
-  },
-  {
-    id: "ht",
-    label: "H&T",
-    dept: "Harvesting & Transport",
-    icon: Truck,
-    group: "Operations",
-    to: "/harvesting-transport",
-  },
-  {
-    id: "inv",
-    label: "Inventory",
-    dept: "Stock & Fuel / Diesel",
-    icon: Package,
-    group: "Business",
-    to: "/inventory",
-  },
-  {
-    id: "fi",
-    label: "Finance & Sales",
-    dept: "Cash Flow & Revenue",
-    icon: Wallet,
-    group: "Business",
-    to: "/finance-sales",
-  },
-];
+import { NAV, type PanelId } from "@/lib/navigation";
 
 const TICKER = [
   { label: "Season Day", value: "Day 47" },
