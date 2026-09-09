@@ -4,6 +4,12 @@
 ═══════════════════════════════════════════════ */
 var charts = {};
 
+function createChart(id, config) {
+  var canvas = document.getElementById(id);
+  if (!canvas) return null;
+  return new Chart(canvas, config);
+}
+
 function switchPanel(id, btn) {
   document.querySelectorAll('.role-btn').forEach(function(b){ b.classList.remove('active'); });
   document.querySelectorAll('.dash-panel').forEach(function(p){ p.classList.remove('active'); });
@@ -54,7 +60,7 @@ function buildCharts(){
   var hours = ['00','01','02','03','04','05','06','07','08','09','10','11','12','13','14'];
   var hourlyActual = [198, 202, 205, 199, 196, 188, 204, 208, 210, 202, 198, 201, 199, 203, 201];
   var hourlyTarget = hours.map(function(){ return 200; });
-  charts['md-hourly'] = new Chart(document.getElementById('chart-md-hourly'), {
+  charts['md-hourly'] = createChart('chart-md-hourly', {
     type: 'line',
     data: {
       labels: hours,
@@ -100,7 +106,7 @@ function buildCharts(){
   var last10days = ['D-9','D-8','D-7','D-6','D-5','D-4','D-3','D-2','Yest','Today'];
   var caneReceived = [4820, 4760, 4940, 4880, 4820, 4700, 4780, 4840, 4900, 4980];
   var caneTarget = last10days.map(function(){ return 5000; });
-  charts['cane-supply'] = new Chart(document.getElementById('chart-cane-supply'), {
+  charts['cane-supply'] = createChart('chart-cane-supply', {
     type: 'bar',
     data: {
       labels: last10days,
@@ -143,7 +149,7 @@ function buildCharts(){
 
   /* ── 3. RECOVERY % TREND (Cane Panel) ── */
   var wks8 = ['Wk 40','Wk 41','Wk 42','Wk 43','Wk 44','Wk 45','Wk 46','Wk 47'];
-  charts['cane-recovery'] = new Chart(document.getElementById('chart-cane-recovery'), {
+  charts['cane-recovery'] = createChart('chart-cane-recovery', {
     type: 'line',
     data: {
       labels: wks8,
@@ -195,7 +201,7 @@ function buildCharts(){
   });
 
   /* ── 4. CANE VARIETY MIX (Cane Panel) ── */
-  charts['cane-variety'] = new Chart(document.getElementById('chart-cane-variety'), {
+  charts['cane-variety'] = createChart('chart-cane-variety', {
     type: 'doughnut',
     data: {
       labels: ['Co 0238', 'Co 86032', 'CoM 0265', 'CoC 671', 'Others'],
@@ -215,7 +221,7 @@ function buildCharts(){
   });
 
   /* ── 5. BY-PRODUCT REVENUE SPLIT (Production Panel) ── */
-  charts['prod-byp'] = new Chart(document.getElementById('chart-prod-byp'), {
+  charts['prod-byp'] = createChart('chart-prod-byp', {
     type: 'doughnut',
     data: {
       labels: ['Ethanol', 'Molasses', 'Bagasse', 'Rectified Spirit', 'Pressmud', 'CO₂'],
@@ -247,7 +253,7 @@ function buildCharts(){
   var cfInflow  = [2.8, 8.4, 3.2, 6.8, 4.2, 9.4, 3.8, 7.2, 2.6, 8.8, 4.4, 6.2, 3.4, 7.6];
   var cfOutflow = [4.8, 6.2, 8.4, 3.6, 7.2, 5.4, 8.8, 4.2, 6.8, 5.2, 7.4, 4.6, 8.2, 3.8];
   var cfNet = cfInflow.map(function(v,i){ return +(v - cfOutflow[i]).toFixed(1); });
-  charts['fi-cashflow'] = new Chart(document.getElementById('chart-fi-cashflow'), {
+  charts['fi-cashflow'] = createChart('chart-fi-cashflow', {
     type: 'bar',
     data: {
       labels: fDays,
@@ -297,7 +303,7 @@ function buildCharts(){
   });
 
   /* ── 7. SUGAR PRICE TREND (Finance Panel) ── */
-  charts['fi-price'] = new Chart(document.getElementById('chart-fi-price'), {
+  charts['fi-price'] = createChart('chart-fi-price', {
     type: 'line',
     data: {
       labels: wks8,

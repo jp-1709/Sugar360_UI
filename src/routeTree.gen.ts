@@ -10,33 +10,115 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CaneAgricultureRouteImport } from './routes/cane-agriculture'
+import { Route as FinanceSalesRouteImport } from './routes/finance-sales'
+import { Route as HarvestingTransportRouteImport } from './routes/harvesting-transport'
+import { Route as InventoryRouteImport } from './routes/inventory'
+import { Route as ManagementRouteImport } from './routes/management'
+import { Route as ProductionRouteImport } from './routes/production'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CaneAgricultureRoute = CaneAgricultureRouteImport.update({
+  id: '/cane-agriculture',
+  path: '/cane-agriculture',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FinanceSalesRoute = FinanceSalesRouteImport.update({
+  id: '/finance-sales',
+  path: '/finance-sales',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HarvestingTransportRoute = HarvestingTransportRouteImport.update({
+  id: '/harvesting-transport',
+  path: '/harvesting-transport',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InventoryRoute = InventoryRouteImport.update({
+  id: '/inventory',
+  path: '/inventory',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ManagementRoute = ManagementRouteImport.update({
+  id: '/management',
+  path: '/management',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProductionRoute = ProductionRouteImport.update({
+  id: '/production',
+  path: '/production',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/cane-agriculture': typeof CaneAgricultureRoute
+  '/finance-sales': typeof FinanceSalesRoute
+  '/harvesting-transport': typeof HarvestingTransportRoute
+  '/inventory': typeof InventoryRoute
+  '/management': typeof ManagementRoute
+  '/production': typeof ProductionRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/cane-agriculture': typeof CaneAgricultureRoute
+  '/finance-sales': typeof FinanceSalesRoute
+  '/harvesting-transport': typeof HarvestingTransportRoute
+  '/inventory': typeof InventoryRoute
+  '/management': typeof ManagementRoute
+  '/production': typeof ProductionRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/cane-agriculture': typeof CaneAgricultureRoute
+  '/finance-sales': typeof FinanceSalesRoute
+  '/harvesting-transport': typeof HarvestingTransportRoute
+  '/inventory': typeof InventoryRoute
+  '/management': typeof ManagementRoute
+  '/production': typeof ProductionRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/cane-agriculture'
+    | '/finance-sales'
+    | '/harvesting-transport'
+    | '/inventory'
+    | '/management'
+    | '/production'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/cane-agriculture'
+    | '/finance-sales'
+    | '/harvesting-transport'
+    | '/inventory'
+    | '/management'
+    | '/production'
+  id:
+    | '__root__'
+    | '/'
+    | '/cane-agriculture'
+    | '/finance-sales'
+    | '/harvesting-transport'
+    | '/inventory'
+    | '/management'
+    | '/production'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CaneAgricultureRoute: typeof CaneAgricultureRoute
+  FinanceSalesRoute: typeof FinanceSalesRoute
+  HarvestingTransportRoute: typeof HarvestingTransportRoute
+  InventoryRoute: typeof InventoryRoute
+  ManagementRoute: typeof ManagementRoute
+  ProductionRoute: typeof ProductionRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +130,59 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/cane-agriculture': {
+      id: '/cane-agriculture'
+      path: '/cane-agriculture'
+      fullPath: '/cane-agriculture'
+      preLoaderRoute: typeof CaneAgricultureRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/finance-sales': {
+      id: '/finance-sales'
+      path: '/finance-sales'
+      fullPath: '/finance-sales'
+      preLoaderRoute: typeof FinanceSalesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/harvesting-transport': {
+      id: '/harvesting-transport'
+      path: '/harvesting-transport'
+      fullPath: '/harvesting-transport'
+      preLoaderRoute: typeof HarvestingTransportRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/inventory': {
+      id: '/inventory'
+      path: '/inventory'
+      fullPath: '/inventory'
+      preLoaderRoute: typeof InventoryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/management': {
+      id: '/management'
+      path: '/management'
+      fullPath: '/management'
+      preLoaderRoute: typeof ManagementRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/production': {
+      id: '/production'
+      path: '/production'
+      fullPath: '/production'
+      preLoaderRoute: typeof ProductionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CaneAgricultureRoute: CaneAgricultureRoute,
+  FinanceSalesRoute: FinanceSalesRoute,
+  HarvestingTransportRoute: HarvestingTransportRoute,
+  InventoryRoute: InventoryRoute,
+  ManagementRoute: ManagementRoute,
+  ProductionRoute: ProductionRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

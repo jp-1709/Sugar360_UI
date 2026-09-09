@@ -812,3 +812,34 @@ export const dashboardPanels = `
 </div>
 
 `;
+
+const PANEL_IDS = ["cmd", "cane", "prod", "ht", "inv", "fi"] as const;
+
+export type DashboardPanelId = (typeof PANEL_IDS)[number];
+
+const panelMarkup = PANEL_IDS.reduce<Record<DashboardPanelId, string>>(
+  (panels, id, index) => {
+    const idStart = dashboardPanels.indexOf(`id="panel-${id}"`);
+    const actualStart = dashboardPanels.lastIndexOf(`<div class="dash-panel`, idStart);
+    const nextId = PANEL_IDS[index + 1];
+    const nextIdStart = nextId ? dashboardPanels.indexOf(`id="panel-${nextId}"`) : -1;
+    const end =
+      nextIdStart === -1
+        ? dashboardPanels.length
+        : dashboardPanels.lastIndexOf(`<div class="dash-panel`, nextIdStart);
+
+    if (actualStart === -1 || end === -1) {
+      throw new Error(`Dashboard panel markup is missing for ${id}`);
+    }
+
+    panels[id] = dashboardPanels
+      .slice(actualStart, end)
+      .replace(/class="dash-panel(?: active)?"/, 'class="dash-panel active"');
+    return panels;
+  },
+  {} as Record<DashboardPanelId, string>,
+);
+
+export function getDashboardPanel(id: DashboardPanelId) {
+  return panelMarkup[id];
+}
